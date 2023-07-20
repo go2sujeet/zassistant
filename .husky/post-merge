@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# check if the conda env by name zassistant exists
+# if not, create it and install the dependencies from environment.yml .if the conda env exists, update it with the dependencies from environment.yml
+if conda env list | grep -q zassistant; then
+    echo "Updating conda environment zassistant"
+    conda env update -f environment.yml
+else
+    echo "Creating conda environment zassistant"
+    conda env create -f environment.yml
+fi
